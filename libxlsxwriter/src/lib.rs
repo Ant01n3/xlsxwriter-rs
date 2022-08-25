@@ -69,6 +69,7 @@ extern crate libxlsxwriter_sys;
 mod chart;
 mod error;
 mod format;
+mod conditional_format;
 mod workbook;
 mod worksheet;
 
@@ -77,6 +78,7 @@ use std::{ffi::CString, os::raw::c_char, pin::Pin};
 pub use chart::*;
 pub use error::XlsxError;
 pub use format::*;
+pub use conditional_format::*;
 pub use workbook::*;
 pub use worksheet::*;
 

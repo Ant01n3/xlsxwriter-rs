@@ -1696,4 +1696,32 @@ impl<'a> Worksheet<'a> {
             }
         }
     }
+
+
+
+// ================================================================================================
+
+    /// This function can be used to insert a conditional formating rule to a given range of cells.
+    pub fn conditional_format_range(
+        &mut self, 
+        first_col: WorksheetCol, first_row: WorksheetRow, 
+        last_col: WorksheetCol,  last_row: WorksheetRow,
+        conditional_format: &mut crate::ConditionalFormat
+    ) -> Result<(), XlsxError> {
+        unsafe {
+            let result = libxlsxwriter_sys::worksheet_conditional_format_range(
+                self.worksheet, first_row, first_col, last_row, last_col,
+                    &mut conditional_format.conditional_format as *mut libxlsxwriter_sys::lxw_conditional_format);
+
+            if result == libxlsxwriter_sys::lxw_error_LXW_NO_ERROR {
+                Ok(())
+            } else {
+                Err(XlsxError::new(result))
+            }
+        }
+    }
+
+// ================================================================================================
+
+
 }
